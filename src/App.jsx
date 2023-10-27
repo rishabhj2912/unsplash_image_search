@@ -7,7 +7,7 @@ import Modal from './Modal';
 const API_URL = 'https://api.unsplash.com/search/photos';
 const random_API_URL = 'https://api.unsplash.com/photos/random';
 const IMAGES_PER_PAGE = 16;
-
+const client_id = '8N6qFgbontQqf_lGTX7ES9AiMgP0ajLB7A_kf2Fb6kU';
 const App = () => {
   const searchInput = useRef(null);
   const [images, setImages] = useState([]);
@@ -28,7 +28,7 @@ const App = () => {
     const fetchInitialRandomImages = async () => {
       try {
         const { data } = await axios.get(
-          `${random_API_URL}?count=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_KEY}`
+          `${random_API_URL}?count=${IMAGES_PER_PAGE}&client_id=${client_id}`
         );
         setImages(data);
       } catch (error) {
@@ -45,7 +45,7 @@ const App = () => {
         `${API_URL}?query=${
           searchInput.current.value
         }&page=1&per_page=${IMAGES_PER_PAGE}&client_id=${
-          import.meta.env.VITE_API_KEY
+          client_id
         }`
       );
       console.log('data', data);
@@ -72,7 +72,7 @@ const App = () => {
   return (
     <div className={`container ${isBackgroundBlack ? 'black-background' : 'white-background'}`}>
       <div className="switch">
-        <label className="switch-label">Toggle Background</label>
+        <label className="switch-label">change mode</label>
         <div className={`switch-slider ${isBackgroundBlack ? 'on' : 'off'}`} onClick={toggleBackground}></div>
       </div>
       
